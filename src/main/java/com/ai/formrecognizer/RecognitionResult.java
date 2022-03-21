@@ -1,6 +1,7 @@
 package com.ai.formrecognizer;
 import org.springframework.data.annotation.Id;
-import java.util.Date;
+
+import java.time.LocalDate;
 import javax.persistence.*;
 
 @Entity
@@ -18,10 +19,10 @@ public class RecognitionResult {
     private String merchantName;
 
     @Column(name = "transactionDate")
-    private Date transactionDate;
+    private LocalDate transactionDate;
 
     @Column(name = "total")
-    private float total;
+    private double total;
 
     public String getReceiptFileName() {
         return receiptFileName;
@@ -39,19 +40,24 @@ public class RecognitionResult {
         this.merchantName = merchantName;
     }
 
-    public Date getTransactionDate() {
+    public LocalDate getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(Date transactionDate) {
+    public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
     }
 
-    public float getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(double total) {
         this.total = total;
+    }
+
+    public String toString() {
+        return String.format("Merchant name: %s\nTransaction date: %s\nTotal:%.2f", 
+            getMerchantName(), getTransactionDate(), getTotal());
     }
 }
